@@ -35,8 +35,23 @@
   max-width: 100%;
   overflow: hidden;
   text-overflow: ellipsis;
+
+  &__tip {
+    cursor: pointer;
+  }
 }
 
 .userPhoto {
   border-radius: $border-radius-round;
+}
+
+.tooltip {
+  padding: 3px 16px;
+  border-radius: 4px;
+  background-color: rgba(0, 0, 0, 0.87);
+}
+
+[data-tip]:after,
+[data-tip]:before {
+  display: none !important;
 }

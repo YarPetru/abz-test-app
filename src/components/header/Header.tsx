@@ -9,7 +9,7 @@ const Header: React.FC = () => {
     <header id="header" className={s.header}>
       <Container>
         <nav className={s.header__navigation}>
-          <a href="#header" className={s.header__logoLink}>
+          <a href="/" className={s.header__logoLink}>
             <Logo className={s.header__logo} />
           </a>
           <div className={s.linkWrapper}>

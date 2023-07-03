@@ -7,7 +7,6 @@ import Heading from 'components/common/Heading';
 const Hero: React.FC = () => {
   return (
     <section className={s.hero}>
-      {/* <Container> */}
       <div className={s.hero__bg}>
         <div className={s.hero__contentWrapper}>
           <Heading>Test assignment for front-end developer</Heading>
@@ -21,8 +20,6 @@ const Hero: React.FC = () => {
           <button className={s.hero__btn}>Sign up</button>
         </div>
       </div>
-
-      {/* </Container> */}
     </section>
   );
 };
