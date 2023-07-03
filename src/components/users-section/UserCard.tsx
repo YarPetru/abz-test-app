@@ -30,37 +30,37 @@ const UserCard: React.FC<IUserCard> = ({
       />
       <p
         className={
-          name.length > 30
+          name.length > 28
             ? `${s.userDetails} ${s.userDetails__tip}`
             : `${s.userDetails}`
         }
         data-tooltip-id="tooltip"
-        data-tooltip-content={name.length > 30 ? name : undefined}
+        data-tooltip-content={name.length > 28 ? name : undefined}
       >
-        {name.length > 30 ? `${name.slice(0, 25)}...` : name}
+        {name.length > 28 ? `${name.slice(0, 25)}...` : name}
       </p>
       <div className={s.contactsWrapper}>
         <p
           className={
-            position.length > 30
+            position.length > 28
               ? `${s.userDetails} ${s.userDetails__tip}`
               : `${s.userDetails}`
           }
           data-tooltip-id="tooltip"
-          data-tooltip-content={position.length > 30 ? position : undefined}
+          data-tooltip-content={position.length > 28 ? position : undefined}
         >
-          {position.length > 30 ? `${position.slice(0, 25)}...` : position}
+          {position.length > 28 ? `${position.slice(0, 25)}...` : position}
         </p>
         <p
           className={
-            email.length > 30
+            email.length > 28
               ? `${s.userDetails} ${s.userDetails__tip}`
               : `${s.userDetails}`
           }
           data-tooltip-id="tooltip"
-          data-tooltip-content={email.length > 30 ? email : undefined}
+          data-tooltip-content={email.length > 28 ? email : undefined}
         >
-          {email.length > 30 ? `${email.slice(0, 25)}...` : email}
+          {email.length > 28 ? `${email.slice(0, 25)}...` : email}
         </p>
         <p className={s.userDetails}>{phone}</p>
       </div>
