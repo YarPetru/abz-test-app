@@ -1,15 +1,15 @@
 import React, { useEffect, useState } from 'react';
 import { Formik, Form, ErrorMessage, Field, FormikHelpers } from 'formik';
-import { INewUserData } from 'types';
 import Heading from 'components/common/Heading';
-import s from './RegisterForm.module.scss';
 import Preloader from 'components/common/Preloader';
 import { useAppDispatch, useAppSelector } from 'hooks/redux-hooks';
 import { fetchPositions, getPositions } from 'store/positions';
 import { fetchToken, getToken } from 'store/token';
 import { addUser, fetchUsers, getFetchedUsers } from 'store/users';
 import { setCurrentUsers } from 'store/users/users-slice';
-import { validationSchema } from 'constants/index';
+import { validationSchema } from '../../constants';
+import { INewUserData } from 'types';
+import s from './RegisterForm.module.scss';
 
 const initialValues: INewUserData = {
   name: '',
@@ -21,11 +21,12 @@ const initialValues: INewUserData = {
 
 const RegisterForm: React.FC = () => {
   const dispatch = useAppDispatch();
+
+  const [uploadedFileName, setUploadedFileName] = useState<string>('');
+
   const { data: positions, isLoading, error } = useAppSelector(getPositions);
   const { registerError } = useAppSelector(getFetchedUsers);
   const token = useAppSelector(getToken);
-
-  const [uploadedFileName, setUploadedFileName] = useState<string>('');
 
   const handleSubmit = async (
     values: INewUserData,
@@ -55,11 +56,6 @@ const RegisterForm: React.FC = () => {
     }
   };
 
-  useEffect(() => {
-    dispatch(fetchPositions());
-    dispatch(fetchToken());
-  }, [dispatch, registerError]);
-
   let renderedPositions: React.ReactNode;
 
   if (isLoading) {
@@ -82,6 +78,11 @@ const RegisterForm: React.FC = () => {
       );
     });
   }
+
+  useEffect(() => {
+    dispatch(fetchPositions());
+    dispatch(fetchToken());
+  }, [dispatch, registerError]);
 
   return (
     <>

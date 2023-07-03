@@ -1,8 +1,7 @@
 import React from 'react';
 
-// import Container from 'components/container';
-import s from './Hero.module.scss';
 import Heading from 'components/common/Heading';
+import s from './Hero.module.scss';
 
 const Hero: React.FC = () => {
   return (

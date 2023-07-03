@@ -1,7 +1,7 @@
 import React from 'react';
 
-import s from './Preloader.module.scss';
 import { ReactComponent as PreloaderImg } from 'images/preloader.svg';
+import s from './Preloader.module.scss';
 
 const Preloader: React.FC = () => {
   return (

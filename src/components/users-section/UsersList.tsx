@@ -1,14 +1,16 @@
 import React, { useEffect, useState } from 'react';
-import UserCard from './UserCard';
 
-import s from './UsersList.module.scss';
 import { useAppDispatch, useAppSelector } from 'hooks/redux-hooks';
 import { fetchUsers, getFetchedUsers, getCurrentUsers } from 'store/users';
 import { setCurrentUsers } from 'store/users/users-slice';
+import UserCard from './UserCard';
 import Preloader from 'components/common/Preloader';
+import s from './UsersList.module.scss';
 
 const UsersList: React.FC = () => {
   const dispatch = useAppDispatch();
+
+  const [count, setCount] = useState<number>(6);
 
   const { data, isLoading, fetchingError } = useAppSelector(getFetchedUsers);
   const currentUsers = useAppSelector(getCurrentUsers);
@@ -17,8 +19,6 @@ const UsersList: React.FC = () => {
   const totalPages = data?.total_pages;
   const totalUsers = data?.total_users;
   const currentUsersNumber = currentUsers.length;
-
-  const [count, setCount] = useState<number>(6);
 
   const handleShowMoreClick = async () => {
     if (totalPages && currentPage! < totalPages - 1) {
@@ -29,25 +29,6 @@ const UsersList: React.FC = () => {
       await dispatch(fetchUsers({ page: currentPage! + 1, count }));
     } else return null;
   };
-
-  useEffect(() => {
-    dispatch(fetchUsers({ page: 1, count: count }));
-  }, [dispatch, count]);
-
-  useEffect(() => {
-    if (data?.users?.length) {
-      if (currentPage === 1) {
-        dispatch(setCurrentUsers(data.users));
-      } else {
-        const newUsers = data.users.filter(
-          user => !currentUsers.some(u => u.id === user.id)
-        );
-        if (newUsers.length > 0) {
-          dispatch(setCurrentUsers([...currentUsers, ...newUsers]));
-        }
-      }
-    }
-  }, [data?.users, currentPage, dispatch, currentUsers, currentUsersNumber]);
 
   let renderedUsers;
 
@@ -67,6 +48,25 @@ const UsersList: React.FC = () => {
       />
     ));
   }
+
+  useEffect(() => {
+    dispatch(fetchUsers({ page: 1, count: count }));
+  }, [dispatch, count]);
+
+  useEffect(() => {
+    if (data?.users?.length) {
+      if (currentPage === 1) {
+        dispatch(setCurrentUsers(data.users));
+      } else {
+        const newUsers = data.users.filter(
+          user => !currentUsers.some(u => u.id === user.id)
+        );
+        if (newUsers.length > 0) {
+          dispatch(setCurrentUsers([...currentUsers, ...newUsers]));
+        }
+      }
+    }
+  }, [data?.users, currentPage, dispatch, currentUsers, currentUsersNumber]);
 
   return (
     <>

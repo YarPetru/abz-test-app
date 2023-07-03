@@ -1,8 +1,8 @@
 import React from 'react';
 
 import { ReactComponent as Logo } from 'images/logo.svg';
-import s from './Header.module.scss';
 import Container from 'components/container';
+import s from './Header.module.scss';
 
 const Header: React.FC = () => {
   return (
